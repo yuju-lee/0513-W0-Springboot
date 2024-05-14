@@ -38,7 +38,33 @@ public class MemoController {
         return responseList;
     }
 
+    @PutMapping("/memos/{id}")
+    public long updateMemo(@PathVariable long id, @RequestBody MemoRequestDto requestDto) {
+        // check this memo is exist in DB
+        if (memoList.containsKey(id)) {
+            Memo memo = memoList.get(id);
 
+            // update memo
+            memo.update(requestDto);
+            return memo.getId();
 
+        } else {
+            throw new IllegalArgumentException("select memo are don't exist.");
+        }
+
+    }
+
+    @DeleteMapping("memos/{id}")
+    public long deleteMemo(@PathVariable long id) {
+        // check this memo is exist in DB
+        if (memoList.containsKey(id)) {
+            memoList.remove(id);
+
+            return id;
+
+        } else {
+            throw new IllegalArgumentException("select memo are don't exist.");
+        }
+    }
 
 }
