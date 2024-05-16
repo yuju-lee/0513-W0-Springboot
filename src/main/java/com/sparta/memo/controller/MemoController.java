@@ -13,7 +13,7 @@ public class MemoController {
 
     private final MemoService memoService;
 
-    public MemoController(MemoService memoService) {
+    public MemoController(MemoService memoService) { //bean 객체만 주입할 수 있음
         this.memoService = memoService;
     }
 
